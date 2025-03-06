@@ -80,6 +80,11 @@
   when:
     - letsencrypt.enabled == false
 
+- name: remove outdated ssl.conf
+  file: path="{{ apache_virtualhost_dir }}/ssl.conf" state=absent
+  when:
+      - letsencrypt.enabled == true
+  notify: enable and restart apache
 
 - name: certbot bonks on listen 443
   lineinfile:
