@@ -97,8 +97,9 @@
   when: (s3.download_redirect == true or s3.upload_redirect == true)
     and custom_endpoint_url | length == 0
     and s3.cors_already_set == false
+
 - name: set s3 direct download
-  shell: 'asadmin-create-or-replace-option.sh "dataverse.files.s3.download-redirect" "{{ s3.download_redirect }}"'
+  shell: '/usr/local/bin/asadmin-create-or-replace-option.sh "dataverse.files.s3.download-redirect" "{{ s3.download_redirect }}"'
   register: output
   changed_when: "'Command create-jvm-options executed successfully.' in output.stdout"
 
