@@ -20,13 +20,13 @@
     path: /etc/letsencrypt/live/{{ servername }}/cert.pem
   register: letsencrypt_cert
 
-- name: Stop services to allow certbot to generate a cert
-  ansible.builtin.service:
-    name: httpd
-    state: stopped
-  when:
-    - ansible_os_family == "RedHat"
-    - not letsencrypt_cert.stat.exists
+# - name: Stop services to allow certbot to generate a cert
+#   ansible.builtin.service:
+#     name: httpd
+#     state: stopped
+#   when:
+#     - ansible_os_family == "RedHat"
+#     - not letsencrypt_cert.stat.exists
 
 - name: Generate new certificate if one doesn't exist.
   ansible.builtin.command: 'certbot --apache --noninteractive --agree-tos --email {{ letsencrypt.certbot.email }} -d {{ servername }} {{ "--test-cert" if letsencrypt.certbot.test_cert else "" }}'
