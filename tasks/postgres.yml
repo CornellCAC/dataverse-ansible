@@ -75,6 +75,7 @@
     type: schema
     objs: public
     role: '{{ db.postgres.user }}'
+  when: db.use_rds == False
 
 - ansible.builtin.import_tasks: postgres_sequential_identifiers.yml
   when: dataverse.api.test_suite == true
