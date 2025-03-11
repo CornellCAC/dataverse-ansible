@@ -25,6 +25,7 @@
     name: httpd
     state: stopped
   when:
+    - false
     - ansible_os_family == "RedHat"
     - not letsencrypt_cert.stat.exists
 
@@ -35,7 +36,7 @@
 - name: Start services after cert has been generated
   ansible.builtin.service:
     name: httpd
-    state: started
+    state: restarted
   when:
     - ansible_os_family == "RedHat"
     - not letsencrypt_cert.stat.exists
