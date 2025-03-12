@@ -12,7 +12,7 @@
   ansible.builtin.package:
     name:
       - certbot
-      - python3-certbot-apache
+      - certbot-apache
     state: latest
 
 - name: Check if certificate already exists
