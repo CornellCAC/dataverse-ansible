@@ -76,12 +76,18 @@
   file: path=/etc/shibboleth/sp-key.pem owner="{{ shibboleth_user }}"
   notify: enable and restart shibd
 
+- name: check if dataverse-idp-metadata.xml exists
+  stat:
+    path: /etc/shibboleth/dataverse-idp-metadata.xml
+  register: idp_metadata
+
 - name: copy TestShib IdP metadata XML file
   copy: src=dataverse-idp-metadata.xml dest=/etc/shibboleth/dataverse-idp-metadata.xml
         owner=root group=root mode=0644
   notify:
     - enable and restart apache
     - enable and restart shibd
+  when: not idp_metadata.stat.exists
 
 - name: get shibAuthProvider.json to host
   get_url:
