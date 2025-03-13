@@ -52,7 +52,7 @@
   when: ansible_os_family == "Debian"
 
 - name: install shibboleth2.xml template
-  template: src=shibboleth2.xml.j2 dest=/etc/shibboleth/shibboleth2.xml
+  template: src=shibboleth3.xml.j2 dest=/etc/shibboleth/shibboleth2.xml
         owner=root group=root mode=0644
   notify:
     - enable and restart shibd
