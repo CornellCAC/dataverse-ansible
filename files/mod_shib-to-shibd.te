@@ -7,6 +7,7 @@ require {
        type unconfined_service_t;
        class sock_file write;
        class unix_stream_socket connectto;
+       class file read;
 }
 
 #============= httpd_t ==============
