@@ -8,6 +8,12 @@
     mode: 0644
     state: touch
 
+# For Shibboleth, which does not recommend SELinux
+- name: Put SELinux in permissive mode
+  selinux:
+    policy: targeted
+    state: permissive
+
 - name: Fin
   debug:
     msg: '##### END ANSIBLE ROLE #####'

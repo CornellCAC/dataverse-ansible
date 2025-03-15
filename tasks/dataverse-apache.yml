@@ -126,7 +126,7 @@
     - ansible_distribution_major_version == "8"
 
 # Disable SElinux install (shibboleth says not supported)
-# - ansible.builtin.import_tasks: selinux.yml
+- ansible.builtin.import_tasks: selinux.yml
 
 - name: run handlers -- this runs the apache restart scripts
   meta: flush_handlers
