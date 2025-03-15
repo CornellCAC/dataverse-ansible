@@ -125,6 +125,10 @@
 - set_fact:
     selinux_enabled: "{{ ansible_selinux is defined and ansible_selinux != False and ansible_selinux.status == 'enabled' }}"
 
+- name: Print SELinux enabled status
+  debug:
+    msg: "SELinux enabled status: {{ selinux_enabled }}"
+
 - name: upload mod_shib-to-shibd.te and installer
   copy:
     src: '{{ item.file }}'
