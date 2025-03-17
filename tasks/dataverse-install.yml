@@ -17,6 +17,7 @@
     state: directory
     owner: '{{ dataverse.payara.user }}'
     group: '{{ dataverse.payara.group }}'
+  when: dataverse.filesdirs | length > 0
 
 - ansible.builtin.import_tasks: dataverse-build.yml
   when: dataverse_branch != "release"
@@ -136,7 +137,7 @@
 
 - name: fire off installer
   shell: '{{ python_bin }} /tmp/dvinstall/install.py -f --config_file=default.config --noninteractive > /tmp/dvinstall/install.out 2>&1'
-  become: yes
+  become: true
   become_user: '{{ dataverse.payara.user }}'
   args:
     chdir: /tmp/dvinstall
@@ -144,15 +145,15 @@
 
 - name: upgrade only -- deploy dataverse war
   shell: '{{ payara_dir }}/bin/asadmin redeploy --name dataverse /tmp/dvinstall/dataverse.war'
-  become: yes
+  become: true
   become_user: '{{ dataverse.payara.user }}'
   when: dataverse.deployment.upgrade_only
 
 - name: stop payara manually (systemd gums up the works)
-  become: yes
+  become: true
   become_user: "{{ dataverse.payara.user }}"
   shell: '{{ payara_dir }}/bin/asadmin stop-domain {{ dataverse.payara.domain }}'
-  ignore_errors: yes
+  ignore_errors: true
   when: not dataverse.deployment.upgrade_only
 
 - name: now start payara with systemd
