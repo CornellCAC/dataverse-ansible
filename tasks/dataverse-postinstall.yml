@@ -44,6 +44,7 @@
     - { prop: ":BlockedApiPolicy", val: "{{ dataverse.api.blocked_policy }}", desc: "control API access"}
     - { prop: ":FileFixityChecksumAlgorithm", val: "{{ dataverse.file_fixity_checksum_algorithm }}", desc: "checksum algorithm used for file fixity" }
     - { prop: ":DefaultAuthProvider", val: "{{ dataverse.default_auth_provider }}", desc: "default login service provider" }
+    - { prop: ":InstallationName", val: "{{ dataverse.installation_name }}", desc: "name of this dataverse" }
 
 
 - ansible.builtin.import_tasks: dataverse-optional-settings.yml
