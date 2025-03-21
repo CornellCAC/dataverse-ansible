@@ -5,8 +5,9 @@
 
 - name: calculate destination directories
   set_fact:
-    gui_file_path: '{{ payara_dir }}/glassfish/domains/{{ dataverse.payara.domain }}/applications/dataverse'
-    favicon_file_path: '{{ payara_dir }}/glassfish/domains/{{ dataverse.payara.domain }}/applications/dataverse/resources/images/fav/'
+    gui_file_path: '{{ payara_dir }}/glassfish/domains/{{ dataverse.payara.domain }}/docroot/branding/'
+    favicon_file_path: '{{ payara_dir }}/glassfish/domains/{{ dataverse.payara.domain }}/docroot/branding/resources/images/fav/'
+    rel_serve_path: '/docroot/'
 
 - name: Applying GUI design
   debug:
@@ -33,7 +34,7 @@
   uri:
     url: http://localhost:8080/api/admin/settings/:{{ item.setting }}
     method: PUT
-    body: '{{ gui_file_path }}/branding/{{ item.file }}'
+    body: '{{ rel_serve_path }}/branding/{{ item.file }}'
     status_code: 200
   with_items: '{{ dataverse.branding.fileSettings }}'
 

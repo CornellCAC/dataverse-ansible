@@ -3,4 +3,11 @@
 .navbar-default {
 	background-color: #F2F2F2;
 	background-image: none;
+	height: 100px;
+}
+
+
+.navbar-brand.custom-logo {
+	height: 70px; 
+	padding: 5px;
 }
