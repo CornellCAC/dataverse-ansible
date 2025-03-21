@@ -124,17 +124,17 @@
   when: dataverse.payara.zipurl is not match(".*glassfish-4.1.zip")
 
 - name: set Datacite variables
-  tasks:
+  block:
     - name: generate script
       template: 
         src: configure_doi.sh.j2
         dest: /tmp/dvinstall/configure_doi.sh
       when: dataverse.doi.provider | lower == "datacite"
     - name: run script
-      become: yes
+      become: true
       become_user: "{{ dataverse.payara.user }}"
       shell: "/tmp/dvinstall/configure_doi.sh"
-      when: dataverse.doi.provider | lower == "datacite"
+  when: dataverse.doi.provider | lower == "datacite"
 
 - name: ensure python3 is present
   set_fact:
