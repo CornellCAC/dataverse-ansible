@@ -129,7 +129,7 @@
       template: 
         src: configure_doi.sh.j2
         dest: /tmp/dvinstall/configure_doi.sh
-      mode: '0755'
+        mode: '0755'
       when: dataverse.doi.provider | lower == "datacite"
     - name: run script
       become: true
