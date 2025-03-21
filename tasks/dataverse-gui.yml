@@ -7,7 +7,7 @@
   set_fact:
     gui_file_path: '{{ payara_dir }}/glassfish/domains/{{ dataverse.payara.domain }}/docroot/branding/'
     favicon_file_path: '{{ payara_dir }}/glassfish/domains/{{ dataverse.payara.domain }}/docroot/branding/resources/images/fav/'
-    rel_serve_path: '/docroot/'
+    rel_serve_path: '/docroot'
 
 - name: Applying GUI design
   debug:
