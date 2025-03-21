@@ -3,11 +3,17 @@
 DOI_BASEURL={{ dataverse.doi.baseurl }}
 DOI_USERNAME={{ dataverse.doi.username }}
 DOI_PASSWORD={{ dataverse.doi.password }}
+DOI_MDCBASEURL = {{ dataverse.doi.mdcbaseurl }}
+#DOI_DATACITERESTAPIURL = {{ dataverse.doi.dataciterestapiurl }}
+
 DEF_BASEURL="https\://mds.test.datacite.org"
+DEF_MDCBASEURL="https\://api.test.datacite.org"
 
 # doi.baseurlstring   -->  dataverse.pid.datacite.mds-api-url
 # doi.username        -->  dataverse.pid.datacite.username
 # doi.password        -->  dataverse.pid.datacite.password
+# dataverse.doi.dataciterestapiurl -->  dataverse.pid.datacite.rest-api-url
+# dataverse.doi.mdcbaseurl         -->  dataverse.pid.datacite.rest-api-url
 
 ASADMIN={{ payara_dir }}/bin/asadmin
 
@@ -15,14 +21,22 @@ ASADMIN={{ payara_dir }}/bin/asadmin
 #        $ASADMIN delete-jvm-options "\"-Ddataverse.pid.datacite.mds-api-url=$DEF_BASEURL""
 #fi
 
+if [ ! -z "$DOI_MDCBASEURL" ]; then
+        $ASADMIN delete-jvm-options "-Ddataverse.pid.datacite.rest-api-url=$DEF_MDCBASEURL"
+        DOI_MDCBASEURL_ESC=$(echo $DOI_MDCBASEURL | sed -e 's/:/\\:/')
+        $ASADMIN create-jvm-options "-Ddataverse.pid.datacite.rest-api-url=$DOI_MDCBASEURL_ESC\""
+fi
+
 if [ ! -z "$DOI_BASEURL" ]; then
         $ASADMIN delete-jvm-options "-Ddataverse.pid.datacite.mds-api-url=$DEF_BASEURL"
         DOI_BASEURL_ESC=$(echo $DOI_BASEURL | sed -e 's/:/\\:/')
         $ASADMIN create-jvm-options "-Ddataverse.pid.datacite.mds-api-url=$DOI_BASEURL_ESC\""
 fi
+
 if [ ! -z "$DOI_USERNAME" ]; then
         $ASADMIN create-jvm-options "-Ddataverse.pid.datacite.username=$DOI_USERNAME"
 fi
+
 if [ ! -z "$DOI_PASSWORD" ]; then
         $ASADMIN create-jvm-options "-Ddataverse.pid.datacite.password=$DOI_PASSWORD"
 fi
