@@ -16,8 +16,8 @@ ASADMIN={{ payara_dir }}/bin/asadmin
 #fi
 
 if [ ! -z "$DOI_BASEURL" ]; then
-        $ASADMIN delete-jvm-options "\"-Ddataverse.pid.datacite.mds-api-url=$DEF_BASEURL""
-        DOI_BASEURL_ESC=`echo $DOI_BASEURL | sed -e 's/:/\\:/'`
+        $ASADMIN delete-jvm-options "-Ddataverse.pid.datacite.mds-api-url=$DEF_BASEURL"
+        DOI_BASEURL_ESC=$(echo $DOI_BASEURL | sed -e 's/:/\\:/')
         $ASADMIN create-jvm-options "-Ddataverse.pid.datacite.mds-api-url=$DOI_BASEURL_ESC\""
 fi
 if [ ! -z "$DOI_USERNAME" ]; then
