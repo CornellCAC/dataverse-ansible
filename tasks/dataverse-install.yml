@@ -20,7 +20,7 @@
   when: dataverse.filesdirs | length > 0
 
 - ansible.builtin.import_tasks: dataverse-build.yml
-  when: dataverse_branch_is_develop
+  when: dataverse_branch != 'release'
   
 - name: fix perms on dataverse-war
   file: path=/tmp/dvinstall/dataverse.war mode=0644
