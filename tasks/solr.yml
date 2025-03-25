@@ -128,7 +128,7 @@
     recurse: yes
     patterns: 'schema*'
   register: solr_files
-  when: dataverse_branch != "release"
+  when: dataverse_branch_is_develop
 
 - name: "branch: place solr schema files"
   copy:
@@ -140,7 +140,7 @@
     remote_src: yes
   with_items:
   - "{{ solr_files.files | map(attribute='path') | list }}"
-  when: dataverse_branch != "release" and
+  when: dataverse_branch_is_develop and
         solr_files is defined
 
 - name: "release: place solrconfig"
@@ -161,7 +161,7 @@
         group: "{{ dataverse.solr.group }}"
         mode: 0644
         remote_src: yes
-  when: dataverse_branch != "release"
+  when: dataverse_branch_is_develop
 
 #- name: adjust jetty.xml requestHeaderSize
 #  replace:

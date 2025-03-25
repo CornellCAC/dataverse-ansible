@@ -25,7 +25,7 @@
 #  loop:
 #    - "{{ dataverse.srcdir }}/develop/scripts/database/querycount/parse.pl"
 #    - "{{ dataverse.srcdir }}/develop/scripts/database/querycount/count.pl"
-#  when: dataverse_branch != "release"
+#  when: dataverse_branch_is_develop
 
 - name: get name of Postgres logfile
   ansible.builtin.find:

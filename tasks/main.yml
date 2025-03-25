@@ -55,7 +55,7 @@
   - postgres
 
 - ansible.builtin.import_tasks: dataverse-branch.yml
-  when: dataverse_branch != "release"
+  when: dataverse_branch_is_develop
   tags:
   - dataverse
 
