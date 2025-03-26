@@ -38,5 +38,5 @@
     - '{{ dataverse.srcdir }}/scripts/installer'
     - '{{ dataverse.srcdir }}/scripts/api/'
   when:
-    - dataverse_branch_is_develop
+    - dataverse_branch != 'release'
     - dataverse_installer_url is not defined
