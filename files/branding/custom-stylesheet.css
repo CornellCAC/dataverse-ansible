@@ -1,11 +1,10 @@
 /* Add any CSS necessary for your custom content */
 
 .navbar-default {
-	background-color: #F2F2F2;
+	background-color: #B31B1B;
 	background-image: none;
 	height: 100px;
 }
-
 
 .navbar-brand.custom-logo {
 	height: 70px; 
