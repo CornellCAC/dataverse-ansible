@@ -27,7 +27,7 @@
     mode: '0600'
 
 - name: set s3 settings in dataverse
-  shell: 'asadmin-create-or-replace-option.sh "{{ item.key }}" "{{ item.value }}"'
+  shell: '/usr/local/bin/asadmin-create-or-replace-option.sh "{{ item.key }}" "{{ item.value }}"'
   register: output
   changed_when: "'Command create-jvm-options executed successfully.' in output.stdout"
   when:
