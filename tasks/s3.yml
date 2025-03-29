@@ -52,8 +52,6 @@
      value: "{{ s3.payload_signing }}"
    - key: dataverse.files.s3.chunked-encoding
      value: "{{ s3.chunked_encoding }}"
-   - key: dataverse.files.s3.custom-endpoint-region
-     value: "{{ s3.custom_endpoint_region }}"
 
 # optional s3 settings
 
