@@ -53,6 +53,34 @@
    - key: dataverse.files.s3.chunked-encoding
      value: "{{ s3.chunked_encoding }}"
 
+- name: set s3_large settings in dataverse
+  shell: '/usr/local/bin/asadmin-create-or-replace-option.sh "{{ item.key }}" "{{ item.value }}"'
+  register: output
+  changed_when: "'Command create-jvm-options executed successfully.' in output.stdout"
+  when:
+   - item.value is defined
+   - item.value != ''
+  with_items:
+   - key: dataverse.files.storage-driver-id
+     value: "{{ s3_large.storage_driver_id }}"
+   - key: dataverse.files.s3-large.type
+     value: "{{ s3_large.files_type }}"
+   - key: dataverse.files.s3-large.label
+     value: "{{ s3_large.label }}"
+   - key: dataverse.files.s3-large.bucket-name
+     value: "{{ s3_large.bucket_name }}"
+   - key: dataverse.files.s3-large.url-expiration-minutes
+     value: "{{ s3_large.url_expiration_minutes }}"
+   - key: dataverse.files.s3-large.upload-redirect
+     value: "{{ s3_large.upload_redirect }}"
+   - key: dataverse.files.s3-large.path-style-access
+     value: "{{ s3_large.path_style_access }}"
+   - key: dataverse.files.s3-large.payload-signing
+     value: "{{ s3_large.payload_signing }}"
+   - key: dataverse.files.s3-large.chunked-encoding
+     value: "{{ s3_large.chunked_encoding }}"
+
+
 # optional s3 settings
 
 - name: expose custom_endpoint_url as variable
