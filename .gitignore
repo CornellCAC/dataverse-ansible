@@ -2,3 +2,5 @@ venv
 .vagrant/
 /.idea
 /*.iml
+*/.DS_Store
+.DS_Store
