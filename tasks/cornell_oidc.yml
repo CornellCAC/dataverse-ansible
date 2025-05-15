@@ -9,8 +9,9 @@
   uri:
     url: "{{ dataverse.api.location }}/admin/authenticationProviders"
     method: POST
-    src: /opt/dv/cornell_oidc.json
-    remote_src: true
+    body: "{{ lookup('file', '/opt/dv/cornell_oidc.json') }}"
     body_format: json
+    headers:
+      Content-Type: "application/json"
     status_code: 201
   when: cornell_oidc_json.changed

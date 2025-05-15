@@ -4,5 +4,5 @@
   "title":"Cornell OpenID",
   "subtitle":"a shibboleth extension",
   "factoryData":"type: oidc | issuer: https://shibidp.cit.cornell.edu | clientId: {{ cornell_oidc.clientId }} | clientSecret: {{ cornell_oidc.clientSecret }}",
-  "enabled":{{ cornell_oidc.enabled }}
+  "enabled":{{ cornell_oidc.enabled | lower }}
 }
