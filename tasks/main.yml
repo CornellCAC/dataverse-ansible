@@ -131,6 +131,11 @@
   tags:
   - shibboleth
 
+- ansible.builtin.import_tasks: cornell_oidc.yml
+  when: cornell_oidc.enabled == True
+  tags:
+  - cornell_oidc
+
 - ansible.builtin.import_tasks: orcid.yml
   when: orcid.enabled == "true"
   tags:
