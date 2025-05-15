@@ -9,7 +9,7 @@
   uri:
     url: "{{ dataverse.api.location }}/admin/authenticationProviders"
     method: POST
-    src: /opt/dv/cornell_oidc
+    src: /opt/dv/cornell_oidc.json
     remote_src: true
     body_format: json
     status_code: 201
